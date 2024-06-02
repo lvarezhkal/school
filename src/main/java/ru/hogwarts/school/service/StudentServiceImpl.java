@@ -10,18 +10,15 @@ import java.util.stream.Collectors;
 
 @Service
 public class StudentServiceImpl implements StudentService {
-
     private final StudentRepository studentRepository;
 
     public StudentServiceImpl(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
-
     @Override
     public Student add(Student student) {
         return studentRepository.save(student);
     }
-
     @Override
     public Student get(Long id) {
         if (students.containsKey(id)) {

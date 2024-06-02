@@ -16,7 +16,6 @@ public class FacultyServiceImpl implements FacultyService {
     public FacultyServiceImpl(FacultyRepository facultyRepository) {
         this.facultyRepository = facultyRepository;
     }
-
     @Override
     public Faculty add(Faculty faculty) {
         return facultyRepository.save(faculty);
@@ -25,7 +24,6 @@ public class FacultyServiceImpl implements FacultyService {
     @Override
     public Student get(Long id) {
         return facultyRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-    }
 
     @Override
     public Faculty update(Faculty faculty) {
@@ -34,7 +32,6 @@ public class FacultyServiceImpl implements FacultyService {
         }
         throw new EntityNotFoundException();
     }
-
     @Override
     public Faculty remove(Long id) {
         if (faculties.containsKey(id)) {

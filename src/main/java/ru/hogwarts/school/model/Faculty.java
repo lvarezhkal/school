@@ -16,7 +16,6 @@ public class Faculty {
     private String color;
 
     public Faculty() {
-
     }
 
     public Faculty(Long id, String name, String color) {
@@ -24,7 +23,6 @@ public class Faculty {
         this.name = name;
         this.color = color;
     }
-
     public Long getId() {
         return id;
     }
@@ -40,7 +38,6 @@ public class Faculty {
     public void setName(String name) {
         this.name = name;
     }
-
     public String getColor() {
         return color;
     }
@@ -48,7 +45,6 @@ public class Faculty {
     public void setColor(String color) {
         this.color = color;
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
