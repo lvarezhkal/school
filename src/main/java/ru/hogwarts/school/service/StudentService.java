@@ -10,8 +10,11 @@ public interface StudentService {
     Student get(Long id);
 
     Student update(Student student);
+
     Student remove(Long id);
+
     Collection<Student> getByAge(Integer age);
+
     Collection<Student> getAll();
 
 }

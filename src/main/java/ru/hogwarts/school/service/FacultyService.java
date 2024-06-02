@@ -11,9 +11,11 @@ public interface FacultyService {
     Faculty add(Faculty faculty);
 
     Student get(Long id);
+
     Faculty update(Faculty faculty);
 
     Faculty remove(Long id);
+
     Collection<Faculty> getByColor(String color);
 
     Collection<Faculty> getAll();
