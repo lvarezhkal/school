@@ -7,18 +7,21 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.StudentService;
 
 import java.util.Collection;
+
 public class StudentController {
     private final StudentService service;
 
     public StudentController(StudentService service) {
         this.service = service;
     }
+
     @PostMapping
     @Operation(summary = "Создание студентов")
     public ResponseEntity<Student> create(@RequestBody Student student) {
         Student addedStudent = service.add(student);
         return ResponseEntity.ok(addedStudent);
     }
+
     @PutMapping
     @Operation(summary = "Обновление студентов")
     public ResponseEntity<Student> update(@RequestBody Student student) {
@@ -39,6 +42,7 @@ public class StudentController {
         Student student = service.get(id);
         return ResponseEntity.ok(student);
     }
+
     @GetMapping("by-age")
     @Operation(summary = "Получение студентов по возрасту")
     public ResponseEntity<Collection<Student>> getByAge(@RequestParam Integer age) {
