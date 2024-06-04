@@ -3,10 +3,12 @@ package ru.hogwarts.school.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.StudentService;
 
 import java.util.Collection;
+import java.util.List;
 
 public class StudentController {
     private final StudentService service;
@@ -55,5 +57,23 @@ public class StudentController {
     public ResponseEntity<Collection<Student>> getAll() {
         Collection<Student> students = service.getAll();
         return ResponseEntity.ok(students);
+    }
+
+    @GetMapping ("/findStudentByAgeBetween")
+    public ResponseEntity<Collection<Student>> findByAgeBetween(@RequestParam(required = true) int max, @RequestParam(required = true) int min) {
+        List<Student> studentToFind = StudentService.findByAgeBetween(min, max);
+        if (studentToFind == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(studentToFind);
+    }
+
+    @GetMapping("/facultyOfStudent")
+    public ResponseEntity <Faculty> findFacultyOfStudent(@RequestParam long id) {
+        Faculty facultyToFind = StudentService.findFacultyOfStudent(id);
+        if (facultyToFind == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(facultyToFind);
     }
 }
