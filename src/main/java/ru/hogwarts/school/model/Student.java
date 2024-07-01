@@ -1,9 +1,7 @@
 package ru.hogwarts.school.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import ru.hogwarts.school.model.Faculty;
 
 import java.util.Objects;
 
@@ -15,7 +13,17 @@ public class Student {
     private String name;
     private Integer age;
 
-    public Student() {
+
+    @JoinColumn(name = "faculty_id")
+    private Faculty faculty;
+
+    @PrePersist
+    void preInsert() {
+        if (this.age == null)
+            this.age = 25;
+    }
+
+    public Student(String alex, int i) {
 
     }
 
@@ -54,12 +62,12 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return Objects.equals(id, student.id) && Objects.equals(name, student.name) && Objects.equals(age, student.age);
+        return Objects.equals(id, student.id) && Objects.equals(name, student.name) && Objects.equals(age, student.age) && Objects.equals(faculty, student.faculty);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, age);
+        return Objects.hash(id, name, age, faculty);
     }
 
     @Override
