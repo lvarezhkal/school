@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.data.domain.PageRequest;
 import ru.hogwarts.school.model.Avatar;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.AvatarRepository;
@@ -85,5 +86,10 @@ public class AvatarServiceImpl implements AvatarService {
     @Override
     public Avatar getAvatarByStudent(Long studentId) {
         return avatarRepository.findByStudentId(studentId).orElseThrow(AvatarNotFoundException::new);
+    }
+
+    public List<Avatar> getAllAvatars(Integer pageNumber, Integer pageSize) {
+        PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize);
+        return avatarRepository.findAll(pageRequest).getContent();
     }
 }

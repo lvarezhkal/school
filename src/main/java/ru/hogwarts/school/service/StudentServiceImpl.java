@@ -71,4 +71,16 @@ public class StudentServiceImpl implements StudentService {
         Optional<Student> student = studentRepository.findById(id);
         return studentRepository.findById(id).getFaculty();
     }
+
+    public Integer getAllStudents() {
+        return studentRepository.getAllStudents();
+    }
+
+    public Integer getAvgStudents() {
+        return studentRepository.getAvgStudents();
+    }
+
+    public List<Student> getLastStudents() {
+        return studentRepository.getLastStudents();
+    }
 }
